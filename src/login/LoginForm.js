@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import EmailInput from '../common/EmailInput';
+import PasswordInput from '../common/PasswordInput';
 import { Link } from 'react-router-dom';
 
 const LoginForm = ({login, onSave, onChange, loading, errors}) => {
@@ -16,7 +17,7 @@ const LoginForm = ({login, onSave, onChange, loading, errors}) => {
                     onChange={onChange}
                     error={errors.username} />
 
-                <TextInput
+                <PasswordInput
                     name="password"
                     label="Password"
                     value={login.password}
