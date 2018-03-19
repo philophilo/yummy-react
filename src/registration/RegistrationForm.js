@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import EmailInput from '../common/EmailInput';
+import PasswordInput from '../common/PasswordInput';
 import { Link } from 'react-router-dom'
 
 const RegistrationForm = ({register, onSave, onChange, loading, errors}) => {
@@ -30,14 +31,14 @@ const RegistrationForm = ({register, onSave, onChange, loading, errors}) => {
                     onChange={onChange}
                     error={errors.username} />
 
-                <TextInput
+                <PasswordInput
                     name="password"
                     label="Password"
                     value={register.password}
                     onChange={onChange}
                     error={errors.password} />
 
-                <TextInput
+                <PasswordInput
                     name="confirmPassword"
                     label="ConfirmPassword"
                     value={register.confirmPassword}
