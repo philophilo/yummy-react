@@ -31,9 +31,6 @@ class CategoriesPage extends React.Component{
             currentPageNumber: this.props.pages.current_page,
             searchCalled: false
         }
-        console.log("======================= search state cons", this.state.searchCalled)
-        // this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-        console.log("========================>>>>>>>000000", this.state.categories)
     }
 
     onChange = ( event, { newValue } ) => {

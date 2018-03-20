@@ -14,7 +14,6 @@ class RecipesPage extends React.Component{
     constructor(props, context) {
         super(props, context)
         this.state = this.props.recipes
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", props, props.match.params['id'], this.state)
         this.props.actions.loadCategoryRecipes(props.match.params['id'])
         this.deleteRecipes = this.deleteRecipes.bind(this);
         this.completeDelete = this.completeDelete.bind(this);
@@ -40,11 +39,9 @@ class RecipesPage extends React.Component{
     }
 
     onSuggestionsFetchRequested = ({ value }) => {
-        console.log("=====================>>>>>>", value)
         this.setState({
             suggestions: this.getSuggestions(value)
         })
-        console.log(this.state, "===+++++++++++++++++++++++++++++++++")
     }
 
     onSuggestionsClearRequested = () => {
@@ -54,7 +51,6 @@ class RecipesPage extends React.Component{
     };
 
     onSuggestionSelected = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
-        console.log(suggestionValue, suggestionIndex, sectionIndex, method, this.props.actions.searchRecipes, "==============================+++++")
         this.props.actions.searchCategoryRecipes(suggestionValue)
     }
 
@@ -63,7 +59,6 @@ class RecipesPage extends React.Component{
         if (this.props.recipes.length > 0) {
             const inputValue = value.trim().toLowerCase();
             const inputLength = inputValue.length;
-            console.log(" ==^^^^^^^^^^^^^^^^^^^^^^^ ", this.props.recipes, inputValue, inputLength)
             return inputLength === 0 ? [] : this.props.recipes.filter(recipe => 
                 recipe.recipe_name.toLowerCase().slice(0, inputLength) === inputValue
             );
@@ -90,7 +85,6 @@ class RecipesPage extends React.Component{
     handleSearchQuery = (event) => {
         event.preventDefault()
         const search = event.target.elements[0].value
-        console.log("================================.............&&&&&&&&&&&&&&&&&&&&&&&&&&&.....................................", search, event)
         // alert(React.findDOMNode(this.refs.theInput).value)
         this.setState({search: true})
         this.props.actions.searchCategoryRecipes(search)
@@ -102,7 +96,6 @@ class RecipesPage extends React.Component{
         var recipe_id = data[0]
         var recipe_name = data[1]
         var category_id = data[2]
-        console.log(category_id, "category_id==============");
         
         confirmAlert({
             title: 'Confirm to delete',
@@ -124,11 +117,9 @@ class RecipesPage extends React.Component{
 
     handlePageSelect(number) {
         this.setState({ currentPageNumber: number });
-        console.log("()()()())()()()()()()()()()()()()()()()()()()()()()())()()", this.state.search)
         if (this.state.search){
             this.props.actions.searchCategoryRecipes(this.state.value, number)
         }else if (this.props.recipes.length > 0){
-            console.log("this====props", this.props)
             this.props.actions.loadCategoryRecipes(this.props.recipes[0].category_id, number);
         }
         
@@ -145,7 +136,6 @@ class RecipesPage extends React.Component{
             onChange: this.onChange
         };
         const items = []
-        console.log("-----------------------------------------------------------", typeof(recipes[0]))
         
         if (pages.number_of_pages) {
             items.push(
@@ -226,17 +216,12 @@ RecipesPage.propTypes = {
 }
 
 function mapStateToProps(state, ownProps){
-    console.log(state, '============ <<<<< map to state =========&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
     return {
         // accessing the state that is within the redux store
         recipes: state.recipes,
         pages: state.pagination
     };
 }
-
-// const mapStateToProps = dispatch => bindActionCreators({
-//     courses: state.courses
-// }, dispatch)
 
 function mapDispatchToProps(dispatch){
     return {
