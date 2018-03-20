@@ -1,9 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import EmailInput from '../common/EmailInput';
 import PasswordInput from '../common/PasswordInput';
-import { Link } from 'react-router-dom';
 
 const RegistrationForm = ({ register, onSave, onChange, loading, errors }) => {
   return (

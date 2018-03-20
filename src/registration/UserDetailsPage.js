@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 import * as registrationActions from '../actions/registrationActions';
 import UserDetails from './UserDetails';
-import { push } from 'react-router-redux';
 
 class UserDetailsPage extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-  }
 
   render() {
     const { register } = this.props;
@@ -33,7 +30,7 @@ UserDetailsPage.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   console.log('here', state);
   return {
     // accessing the state that is within the redux store

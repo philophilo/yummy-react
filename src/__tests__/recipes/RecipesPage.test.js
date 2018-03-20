@@ -11,7 +11,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('<RecipesPage />', () => {
   const store = configureMockStore([thunk])({
     register: [],
-    login:[],
+    login: [],
     categories: [],
     recipes: [],
     pagination: [],
