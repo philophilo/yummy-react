@@ -9,12 +9,12 @@ export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 
 // --------------- login Actions --------------------------------
-export const DO_LOGIN_REQUEST = 'DO_LOGIN_REQUEST'
-export const DO_LOGIN_SUCESS = 'DO_LOGIN_SUCCESS'
-export const DO_LOGIN_FAILURE = 'DO_LOGIN_FAILURE'
+export const DO_LOGIN_REQUEST = 'DO_LOGIN_REQUEST';
+export const DO_LOGIN_SUCESS = 'DO_LOGIN_SUCCESS';
+export const DO_LOGIN_FAILURE = 'DO_LOGIN_FAILURE';
 
 // --------------- logout Actions -------------------------------
-export const DO_LOGOUT_REQUEST = 'DO_LOGOUT_REQUEST'
+export const DO_LOGOUT_REQUEST = 'DO_LOGOUT_REQUEST';
 
 // --------------- category Actions -----------------------------
 export const LOAD_CATEGORIES_SUCCESS = 'LOAD_CATEGORIES_SUCCESS';

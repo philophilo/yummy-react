@@ -55,13 +55,11 @@ class CategoriesPage extends React.Component{
     };
 
     onSuggestionSelected = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
-        console.log("=========================.>>>>>>> sugggestion value ", suggestionValue)
         this.props.actions.searchCategories(suggestionValue)
     }
 
     
     getSuggestions = value => {
-        console.log("============================get suggestions", value)
         if (this.props.categories.length > 0) {
             const inputValue = value.trim().toLowerCase();
             const inputLength = inputValue.length;
@@ -85,7 +83,6 @@ class CategoriesPage extends React.Component{
         event.preventDefault()
         const search = event.target.elements[0].value
         // alert(React.findDOMNode(this.refs.theInput).value)
-        console.log("search function>>>>>>>>", search)
         this.state.searchCalled = true
         this.props.actions.searchCategories(search)
     }

@@ -1,6 +1,5 @@
 import * as types from './actionTypes';
 import CategoryApi from '../api/mockCategoryApi';
-import {beginAjaxCall} from './ajaxStatusActions';
 import { push } from 'react-router-redux'
 
 export function loadCategoriesSuccess(categories) {
@@ -30,7 +29,6 @@ export function categoryPaginationSuccess(pagination){
 export function loadCategories(page = 1){
     // >>> thunk <<<
     return function(dispatch){
-        dispatch(beginAjaxCall());
         // getAllCourses returns a promise containing an object
         return CategoryApi.getAllCategories(page).then(data => {
             // arrow (anonymous) function with parameter courses
@@ -47,7 +45,6 @@ export function loadCategories(page = 1){
 
 export function saveCategory(category) {
     return function (dispatch, getState){
-        dispatch(beginAjaxCall());
         return CategoryApi.saveCategory(category).then(savedCategory => {
             console.log("..................", savedCategory)
             category.id ? dispatch(updateCategorySuccess(savedCategory)): 
@@ -62,7 +59,6 @@ export function saveCategory(category) {
 
 export function deleteCategory(category_id) {
     return function (dispatch, getState){
-        dispatch(beginAjaxCall());
         return CategoryApi.deleteCategory(category_id).then(categories => {
             dispatch(deleteCategorySuccess(categories))
             dispatch(push('/categories'))
@@ -76,7 +72,6 @@ export function deleteCategory(category_id) {
 export function searchCategories(q, page=1){
     // >>> thunk <<<
     return function(dispatch){
-        dispatch(beginAjaxCall());
         // getAllCourses returns a promise containing an object
         return CategoryApi.searchCategories(q, page).then(data => {
             // arrow (anonymous) function with parameter courses
