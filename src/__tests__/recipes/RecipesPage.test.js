@@ -1,7 +1,8 @@
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import React from 'react';
 import RecipesPage from '../../recipes/RecipesPage';
@@ -15,7 +16,6 @@ describe('<RecipesPage />', () => {
     categories: [],
     recipes: [],
     pagination: [],
-    ajaxCallsInProgress: 0
   });
 
   const props = {
@@ -42,7 +42,26 @@ describe('<RecipesPage />', () => {
       recipe_name: 'ajhbdsvkjnds',
     }],
   };
+  const preventDefault = jest.fn();
+  const component = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <RecipesPage {...props} match={{ params: {} }} />
+      </MemoryRouter>
+    </Provider>);
   it('should render itself without crashing', () => {
     shallow(<Provider store={store}><RecipesPage {...props} /></Provider>);
+  });
+  it('should have search form', () => {
+    expect(component.find('Autosuggest').length).toBe(1);
+    expect(component.find('form').length).toBe(1);
+    expect(component.find('form').simulate('submit', { preventDefault }));
+    expect(preventDefault).toBeCalled();
+  });
+  it('should have table', () => {
+    expect(component.find('table').length).toBe(1);
+  });
+  it('should have pagination list', () => {
+    expect(component.find('ul .pagination').length).toBe(2);
   });
 });
