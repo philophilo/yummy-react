@@ -6,7 +6,7 @@ import * as categoryActions from '../actions/categoryActions';
 import CategoryForm from './CategoryForm';
 
 
-class ManageCategoryPage extends React.Component {
+export class ManageCategoryPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
