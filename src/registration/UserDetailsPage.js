@@ -15,10 +15,10 @@ class UserDetailsPage extends React.Component{
     render() {
         const {register} = this.props;
         return (
-            <div>
+            <div className='container-fluid body-bg'>
                 <h1>User Details</h1>
                 <input type="submit"
-                    value="Add User"
+                    value="Edit User"
                     className="btn btn-primary"
                     onClick={this.props.actions.redirectToRegister}
                     />
@@ -34,6 +34,7 @@ UserDetailsPage.propTypes = {
 }
 
 function mapStateToProps(state, ownProps){
+    console.log("here", state)
     return {
         // accessing the state that is within the redux store
         register: state.register
@@ -44,7 +45,7 @@ function mapDispatchToProps(dispatch){
     return {
         actions: bindActionCreators({
             registrationActions,
-            redirectToRegister: () => push('/register')
+            redirectToRegister: () => push('/edit-profile')
         }, dispatch)
     };
 }

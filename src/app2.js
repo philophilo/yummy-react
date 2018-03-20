@@ -16,6 +16,7 @@ import NavBar from './components/home/NavBar';
 import { loadCategories } from './actions/categoryActions'
 import { doLogout } from './actions/loginActions'
 import configureStore from './store/configureStore'
+import UserDetailsPage from './registration/UserDetailsPage'
 
 import 'antd/dist/antd.css';
 import './home.css'
@@ -117,6 +118,7 @@ class App extends React.Component {
         
         {token ?
           <main>
+            <Route exact path="/user" component={UserDetailsPage} />
             <Route exact path="/categories" component={CategoriesPage} />
             <Route exact path="/add/category" component={ManageCategoryPage} />
             <Route exact path="/category/:id" component={ManageCategoryPage} />

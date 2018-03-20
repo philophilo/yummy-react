@@ -79,6 +79,7 @@ function getRecipeById(recipes, id){
 // parsing the state to the class
 function mapStateToProps(state, ownProps){
     let recipe = {id: '', recipe_name: '', ingredients:'', description: '', recipe_date: '', categoryId: ''};
+    console.log("--------------------------------------------------------++++++++++++++++++++++++++++category id", ownProps.match.params)
     let categoryForRecipe = ownProps.match.params.categoryId
     console.log("--------------------------------------------------------++++++++++++++++++++++++++++category id", ownProps.match.params)
     if (ownProps.match.params){
