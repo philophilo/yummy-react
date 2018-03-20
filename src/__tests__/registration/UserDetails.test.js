@@ -5,12 +5,12 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import React from 'react';
  
 // import Testutils from 'react-addons-test-utils';
-import UserDetails from '../../registration/UserDetails';
+import UserDetails from '../../components/registration/UserDetails';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('<UserDetails />', () => {
     const store = configureMockStore([thunk])({

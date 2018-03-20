@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { push } from 'react-router-redux'
-;
+import { push } from 'react-router-redux';
+
 const register = [
-  {},
 ];
 
 class RegistrationApi {
   // TODO track the name of the state -- when is it registration and register
   static saveUser(user) {
-    user = Object.assign({}, user); 
+    user = Object.assign({}, user);
     return new Promise((resolve, reject) => {
       axios.post('http://127.0.0.1:5000/auth/register', user)
         .then((response) => {
@@ -22,16 +21,32 @@ class RegistrationApi {
   }
 
   // TODO track the name of the state -- when is it registration and register
-  static getUser(user) {
-    user = Object.assign({}, user);
+  static getUser() {
     return new Promise((resolve, reject) => {
-      axios.post('http://127.0.0.1:5000/auth/login', user)
+      axios.get('http://127.0.0.1:5000/auth/get_user', {
+        headers: { Authorization: `Bearer ${  localStorage.getItem('token')}` },
+      })
         .then((response) => {
-          register.push(response.data);
-          resolve(register);
+          resolve([response.data.user]);
         })
         .catch((error) => {
-          console.log(error, '_+_+_++_++_+_+_');
+          reject(error.response.data.Error);
+          console.log(error.response.data.Error, '_+_+_++_++_+_+_');
+        });
+    });
+  }
+
+  static changePassword(user) {
+    user.password = user.current_password;
+    return new Promise((resolve, reject) => {
+      axios.put('http://127.0.0.1:5000/auth/reset-password', user, {
+        headers: { Authorization: `Bearer ${  localStorage.getItem('token')}` },
+      })
+        .then((response) => {
+          resolve(response.data.message);
+        })
+        .catch((error) => {
+          reject(error.response.data.Error);
         });
     });
   }

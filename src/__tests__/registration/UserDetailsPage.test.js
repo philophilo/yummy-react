@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 
 // import Testutils from 'react-addons-test-utils';
-import UserDetailsPage from '../../registration/UserDetailsPage';
+import UserDetailsPage from '../../components/registration/UserDetailsPage';
 
 Enzyme.configure({ adapter: new Adapter() });
 

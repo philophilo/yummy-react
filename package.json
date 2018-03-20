@@ -6,6 +6,7 @@
     "antd": "^3.2.3",
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap3": "^3.3.5",
     "expect": "^23.0.0-alpha.0",
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2",

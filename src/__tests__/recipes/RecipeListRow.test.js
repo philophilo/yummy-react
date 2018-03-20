@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import RecipeListRow from '../../recipes/RecipeListRow';
+import RecipeListRow from '../../components/recipes/RecipeListRow';
 
 Enzyme.configure({ adapter: new Adapter() });
 

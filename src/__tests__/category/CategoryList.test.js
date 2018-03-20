@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import CategoryList from '../../category/CategoryList';
+import CategoryList from '../../components/category/CategoryList';
 
 
 Enzyme.configure({ adapter: new Adapter() });

@@ -35,7 +35,6 @@ export function loadCategoryRecipes(category_id, page=1){
             dispatch(loadRecipesSuccess(recipes));
             dispatch(recipePaginationSuccess(pagination))
             // window.location = "/CategoriesPage"
-            
         }).catch(error => {
             toastr.error(error)
             window.history.back()

@@ -2,38 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as categoryActions from '../actions/categoryActions';
-import CategoryList from './CategoryList';
+import {Link} from 'react-router-dom';
+import * as recipeActions from '../../actions/recipeActions';
+import RecipeList from './RecipeList';
 import { push } from 'react-router-redux';
 import { Pagination } from 'react-bootstrap'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import Autosuggest from 'react-autosuggest';
+import Autosuggest from 'react-autosuggest'
 
-
-class CategoriesPage extends React.Component{
+class RecipesPage extends React.Component{
     constructor(props, context) {
         super(props, context)
-        this.deleteCategory = this.deleteCategory.bind(this);
+        this.state = this.props.recipes
+        this.props.actions.loadCategoryRecipes(props.match.params['id'])
+        this.deleteRecipes = this.deleteRecipes.bind(this);
         this.completeDelete = this.completeDelete.bind(this);
+        this.redirectToAddRecipePage = this.redirectToAddRecipePage.bind(this)
         this.getSuggestions = this.getSuggestions.bind(this);
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
-        // this.handleSearchQuery = this.handleSearchQuery.bind(this)
-        this.cats = [...this.props.categories]
-        
+        this.handleSearchQuery = this.handleSearchQuery.bind(this)
         this.state = {
-            categories: [...this.props.categories],
-            pages: Object.assign({}, this.props.pages),
             value: '',
             suggestions: [],
             currentPageNumber: this.props.pages.current_page,
-            searchCalled: false
+            search: false,
         }
-        console.log("======================= search state cons", this.state.searchCalled)
         // this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-        console.log("========================>>>>>>>000000", this.state.categories)
     }
 
     onChange = ( event, { newValue } ) => {
@@ -55,51 +52,55 @@ class CategoriesPage extends React.Component{
     };
 
     onSuggestionSelected = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
-        this.props.actions.searchCategories(suggestionValue)
+        this.props.actions.searchCategoryRecipes(suggestionValue)
     }
 
     
     getSuggestions = value => {
-        if (this.props.categories.length > 0) {
+        if (this.props.recipes.length > 0) {
             const inputValue = value.trim().toLowerCase();
             const inputLength = inputValue.length;
-            return inputLength === 0 ? [] : this.props.categories.filter(category => 
-                category.category_name.toLowerCase().slice(0, inputLength) === inputValue
+            return inputLength === 0 ? [] : this.props.recipes.filter(recipe => 
+                recipe.recipe_name.toLowerCase().slice(0, inputLength) === inputValue
             );
-        }else{
-            return ''
         }
     }
 
-    getSuggestionValue = suggestion => suggestion.category_name
+    getSuggestionValue = suggestion => suggestion.recipe_name;
 
     renderSuggestion = suggestion => (
         <div>
-            {suggestion.category_name}
+            {suggestion.recipe_name}
         </div>
     );
+
+    redirectToAddRecipePage(elementObject){
+        this.context.router.history.push('/create/category/' + elementObject.category_id + '/recipe/')
+    }
+
+    completeDelete = (category_id, recipe_id) => {
+        this.props.actions.deleteRecipe(category_id, recipe_id)
+    }
+
 
     handleSearchQuery = (event) => {
         event.preventDefault()
         const search = event.target.elements[0].value
         // alert(React.findDOMNode(this.refs.theInput).value)
-        this.state.searchCalled = true
-        this.props.actions.searchCategories(search)
+        this.setState({search: true})
+        this.props.actions.searchCategoryRecipes(search)
     }
 
-    completeDelete = (category_id) => {
-        this.props.actions.deleteCategory(category_id)
-    }
-
-    deleteCategory(event){
+    deleteRecipes(event){
 
         var data= event.currentTarget.dataset.id.split(',')
-        var category_id = data[0]
-        var category_name = data[1]
+        var recipe_id = data[0]
+        var recipe_name = data[1]
+        var category_id = data[2]
         
         confirmAlert({
             title: 'Confirm to delete',
-            message: 'Are you sure you want to delete '+ category_name ,
+            message: 'Are you sure you want to delete '+ recipe_name ,
             confirmLabel: 'Delete',
             cancelLabel: 'Cancel',
             buttons: [
@@ -108,7 +109,7 @@ class CategoriesPage extends React.Component{
                 },
                 {
                   label: 'Delete',
-                  onClick: () => this.completeDelete(category_id)
+                  onClick: () => this.completeDelete(category_id, recipe_id)
                 }
             ]
         })
@@ -117,19 +118,21 @@ class CategoriesPage extends React.Component{
 
     handlePageSelect(number) {
         this.setState({ currentPageNumber: number });
-        if(this.state.searchCalled){
-            this.props.actions.searchCategories(this.state.value, number)
-        }else{
-            this.props.actions.loadCategories(number);
+        if (this.state.search){
+            this.props.actions.searchCategoryRecipes(this.state.value, number)
+        }else if (this.props.recipes.length > 0){
+            this.props.actions.loadCategoryRecipes(this.props.recipes[0].category_id, number);
         }
         
     }
 
+
     render() {
-        const {categories, pages} = this.props;
+        const {recipes, pages} = this.props;
+        let elementObject = recipes[0]
         const {value, suggestions } = this.state;
         const  inputProps = {
-            placeholder: 'search category',
+            placeholder: 'search recipe',
             value,
             onChange: this.onChange
         };
@@ -175,15 +178,30 @@ class CategoriesPage extends React.Component{
                 />,
             );
         }
-
+        
         return (
-            <div  className='container-fluid body-bg'>
-                <h1>Categories</h1>
-                <a className="btn btn-primary" 
-                href='/add/category' >Add category</a>
-
+            <div  className='container body-bg'>
+                <div className="row">
+                    <div className="page-header">
+                        <div className="left">
+                            <div className="intro">
+                            <div className="heading">
+                            <h1> {recipes.length > 0 ? elementObject.category_name + ' recipes' : null} </h1>
+                            </div>
+                            <div className="add-button">
+                            {recipes.length > 0 ?
+                                <Link className="btn btn-primary" 
+                                    to={'/create/category/' +elementObject.category_id + '/recipe/'} >
+                                    Add recipe
+                                </Link>
+                            : null}
+                            </div>
+                            </div>
+                        </div>
+                        <div className="right">
                 <form onSubmit={this.handleSearchQuery}>
-
+                <div className='form-group'>
+                <div className="field">
                     <Autosuggest 
                         suggestions = {suggestions}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -193,39 +211,46 @@ class CategoriesPage extends React.Component{
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
-
+                    </div>
+                                        </div>
                 </form>
+                </div>
+                </div>
+                    </div>
+                
+                <RecipeList recipes={recipes} onDelete={this.deleteRecipes}/>
 
-                <CategoryList 
-                    categories={categories} 
-                    onDelete={this.deleteCategory}
-                />
-                <Pagination>
-                    <Pagination bsSize="medium">{ items }</Pagination>
-                </Pagination>
+                <section>
+                    <div className="row paging">
+                        <Pagination>
+                            <Pagination bsSize="medium">{ items }</Pagination>
+                        </Pagination>
+                    </div>
+                </section>
+
             </div>
         );
     }
 }
 
-CategoriesPage.propTypes = {
-    categories: PropTypes.array.isRequired,
-    pages: PropTypes.array.isRequired,
+RecipesPage.propTypes = {
+    recipes: PropTypes.array.isRequired,
+    pages: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state, ownProps){
     return {
         // accessing the state that is within the redux store
-        categories: state.categories,
+        recipes: state.recipes,
         pages: state.pagination
     };
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        actions: bindActionCreators(categoryActions, dispatch)
+        actions: bindActionCreators(recipeActions, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (CategoriesPage);
+export default connect(mapStateToProps, mapDispatchToProps) (RecipesPage);

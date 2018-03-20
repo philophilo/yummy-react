@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import EmailInput from '../../common/EmailInput';
+import EmailInput from '../../components/common/EmailInput';
 
 Enzyme.configure({ adapter: new Adapter() });
 

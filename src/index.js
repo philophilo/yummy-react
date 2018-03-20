@@ -18,6 +18,7 @@ const store = configureStore;
 // store.dispatch(loadUsers())
 if (localStorage.getItem('token')) {
   store.dispatch(loadCategories());
+  store.dispatch(loadUsers());
 }
 // store.dispatch(loadCategoryRecipes())
 

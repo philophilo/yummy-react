@@ -1,4 +1,5 @@
 import { push } from 'react-router-redux';
+import toastr from 'toastr';
 import * as types from './actionTypes';
 import RegistrationApi from '../api/mockRegistrationApi';
 
@@ -20,8 +21,7 @@ export function loadUsers() {
   // >>> thunk <<<
   return function (dispatch) {
     // getAllCourses returns a promise containing an object
-    return RegistrationApi.getAllUsers().then(register => {
-      // arrow (anonymous) function with parameter courses
+    return RegistrationApi.getUser().then(register => {
       dispatch(loadRegisterSuccess(register));
       // dispatch actions creator
     }).catch(error => {
@@ -41,6 +41,17 @@ export function saveRegistration(user) {
       }
     }).catch(error => {
       throw (error);
+    });
+  };
+}
+
+export function changePassword(user) {
+  return function (dispatch) {
+    return RegistrationApi.changePassword(user).then(response => {
+      toastr.success(response);
+      dispatch(push('/user'));
+    }).catch(error => {
+      toastr.error(error);
     });
   };
 }

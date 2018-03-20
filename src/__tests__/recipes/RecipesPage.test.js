@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import React from 'react';
-import RecipesPage from '../../recipes/RecipesPage';
+import RecipesPage from '../../components/recipes/RecipesPage';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -57,9 +57,6 @@ describe('<RecipesPage />', () => {
     expect(component.find('form').length).toBe(1);
     expect(component.find('form').simulate('submit', { preventDefault }));
     expect(preventDefault).toBeCalled();
-  });
-  it('should have table', () => {
-    expect(component.find('table').length).toBe(1);
   });
   it('should have pagination list', () => {
     expect(component.find('ul .pagination').length).toBe(2);

@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import ManageRecipePage from '../../recipes/ManageRecipePage';
+import ManageRecipePage from '../../components/recipes/ManageRecipePage';
 
 Enzyme.configure({ adapter: new Adapter() });
 describe('<ManageRecipePage />', () => {

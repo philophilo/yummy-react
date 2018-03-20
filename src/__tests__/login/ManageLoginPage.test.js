@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import ManageLoginPage from '../../login/ManageLoginPage';
+import ManageLoginPage from '../../components/login/ManageLoginPage';
 
 Enzyme.configure({ adapter: new Adapter() });
 

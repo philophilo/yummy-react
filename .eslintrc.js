@@ -38,5 +38,6 @@ module.exports = {
         "no-lonely-if":0,
         "react/no-string-refs":0,
         "arrow-parens":0,
+        "no-unused-vars":0,
     }
 };

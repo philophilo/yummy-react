@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import ManageCategoryPage from '../../category/ManageCategoryPage';
+import ManageCategoryPage from '../../components/category/ManageCategoryPage';
 
 
 Enzyme.configure({ adapter: new Adapter() });
