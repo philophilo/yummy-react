@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/philophilo/yummy-react/badge.svg?branch=develop)](https://coveralls.io/github/philophilo/yummy-react?branch=develop) [![Build Status](https://travis-ci.org/philophilo/yummy-react.svg?branch=develop)](https://travis-ci.org/philophilo/yummy-react)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/51c0630cf54f4171bae667ea77975c67)](https://www.codacy.com/app/philophilo/yummy-react?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philophilo/yummy-react&amp;utm_campaign=Badge_Grade) [![Coverage Status](https://coveralls.io/repos/github/philophilo/yummy-react/badge.svg?branch=develop)](https://coveralls.io/github/philophilo/yummy-react?branch=develop) [![Build Status](https://travis-ci.org/philophilo/yummy-react.svg?branch=develop)](https://travis-ci.org/philophilo/yummy-react)
 
 The project is build with React and Redux framework.
 
