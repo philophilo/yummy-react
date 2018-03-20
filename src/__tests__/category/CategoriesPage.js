@@ -4,6 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import CategoriesPage from '../../category/CategoriesPage';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -11,11 +12,11 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('<CategoriesPage />', () => {
   const store = configureMockStore([thunk])({
     register: [],
-    login:[],
+    login: [],
     categories: [],
     recipes: [],
     pagination: [],
-    ajaxCallsInProgress: 0
+    ajaxCallsInProgress: 0,
   });
 
   const props = {
@@ -33,7 +34,22 @@ describe('<CategoriesPage />', () => {
       message: 'category found',
     }],
   };
+  const preventDefault = jest.fn();
+  const component = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <CategoriesPage {...props} />
+      </MemoryRouter>
+    </Provider>);
   it('should render itself without crashing', () => {
     mount(<Provider store={store}><CategoriesPage {...props} /></Provider>);
+  });
+  it('should search form', () => {
+    expect(component.find('form').length).toBe(1);
+    expect(component.find('form').simulate('submit', { preventDefault }));
+    expect(preventDefault).toBeCalled();
+  });
+  it('should have pagination list', () => {
+    expect(component.find('ul .pagination').length).toBe(2);
   });
 });
