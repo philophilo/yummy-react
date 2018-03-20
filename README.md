@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/philophilo/yummy-react/badge.svg?branch=develop)](https://coveralls.io/github/philophilo/yummy-react?branch=develop) [![Build Status](https://travis-ci.org/philophilo/yummy-react.svg?branch=develop)](https://travis-ci.org/philophilo/yummy-react)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
