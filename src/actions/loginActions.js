@@ -1,4 +1,3 @@
-import { push } from 'react-router-redux';
 import * as types from './actionTypes';
 import LoginApi from '../api/mockLoginApi';
 

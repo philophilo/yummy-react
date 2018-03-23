@@ -1,6 +1,7 @@
+import { push } from 'react-router-redux';
+import toastr from 'toastr';
 import * as types from './actionTypes';
 import CategoryApi from '../api/mockCategoryApi';
-import { push } from 'react-router-redux'
 
 export function loadCategoriesSuccess(categories) {
     // objects: when rhs marches lhs
@@ -38,7 +39,7 @@ export function loadCategories(page = 1){
             dispatch(categoryPaginationSuccess(pagination))
             // dispatch actions creator
         }).catch(error => {
-            throw(error);
+            toastr.error(error)
         });
     }
 }
@@ -46,22 +47,25 @@ export function loadCategories(page = 1){
 export function saveCategory(category) {
     return function (dispatch, getState){
         return CategoryApi.saveCategory(category).then(savedCategory => {
-            console.log("..................", savedCategory)
             category.id ? dispatch(updateCategorySuccess(savedCategory)): 
                 dispatch(createCategorySuccess(savedCategory))
             // window.history.back()
+            dispatch(push('/categories'))
             
         }).catch(error => {
-            throw(error);
+            toastr.error(error)
         });
     };
 }
 
 export function deleteCategory(category_id) {
     return function (dispatch, getState){
-        return CategoryApi.deleteCategory(category_id).then(categories => {
+        return CategoryApi.deleteCategory(category_id).then(response => {
+            let [categories, message] = response
             dispatch(deleteCategorySuccess(categories))
-            dispatch(push('/categories'))
+            dispatch(loadCategories())
+            toastr.success(message)
+            // dispatch(push('/categories'))
             
         }).catch(error => {
             throw(error);

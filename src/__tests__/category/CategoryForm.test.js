@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import CategoryForm from '../../category/CategoryForm';
+import CategoryForm from '../../components/category/CategoryForm';
 
 
 Enzyme.configure({ adapter: new Adapter() });

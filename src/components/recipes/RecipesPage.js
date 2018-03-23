@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as recipeActions from '../actions/recipeActions';
+import {Link} from 'react-router-dom';
+import * as recipeActions from '../../actions/recipeActions';
 import RecipeList from './RecipeList';
 import { push } from 'react-router-redux';
 import { Pagination } from 'react-bootstrap'
@@ -179,13 +180,28 @@ class RecipesPage extends React.Component{
         }
         
         return (
-            <div  className='container-fluid body-bg'>
-                <h1> {recipes.length > 0 ? elementObject.category_name + ' Recipes' : null} </h1>
-                <a className="btn btn-primary" 
-                href={recipes.length > 0 ? '/create/category/' +elementObject.category_id + '/recipe/' : null} >Add recipe</a>
-                
+            <div  className='container body-bg'>
+                <div className="row">
+                    <div className="page-header">
+                        <div className="left">
+                            <div className="intro">
+                            <div className="heading">
+                            <h1> {recipes.length > 0 ? elementObject.category_name + ' recipes' : null} </h1>
+                            </div>
+                            <div className="add-button">
+                            {recipes.length > 0 ?
+                                <Link className="btn btn-primary" 
+                                    to={'/create/category/' +elementObject.category_id + '/recipe/'} >
+                                    Add recipe
+                                </Link>
+                            : null}
+                            </div>
+                            </div>
+                        </div>
+                        <div className="right">
                 <form onSubmit={this.handleSearchQuery}>
-
+                <div className='form-group'>
+                <div className="field">
                     <Autosuggest 
                         suggestions = {suggestions}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -195,14 +211,22 @@ class RecipesPage extends React.Component{
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
-
+                    </div>
+                                        </div>
                 </form>
+                </div>
+                </div>
+                    </div>
                 
                 <RecipeList recipes={recipes} onDelete={this.deleteRecipes}/>
 
-                <Pagination>
-                    <Pagination bsSize="medium">{ items }</Pagination>
-                </Pagination>
+                <section>
+                    <div className="row paging">
+                        <Pagination>
+                            <Pagination bsSize="medium">{ items }</Pagination>
+                        </Pagination>
+                    </div>
+                </section>
 
             </div>
         );

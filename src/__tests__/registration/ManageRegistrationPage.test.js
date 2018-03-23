@@ -6,13 +6,13 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import React from 'react';
  
 // import Testutils from 'react-addons-test-utils';
-import ManageRegistrationPage from '../../registration/ManageRegistrationPage';
+import ManageRegistrationPage from '../../components/registration/ManageRegistrationPage';
 
+
+Enzyme.configure({ adapter: new Adapter() });
 describe('<ManageRegistrationPage />', () => {
     const store = configureMockStore([thunk])({
       

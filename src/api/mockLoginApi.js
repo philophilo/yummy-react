@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const login = [
-  {},
-];
+const login = [];
 
 class LoginApi {
   // TODO track the name of the state -- when is it registration and register
@@ -12,12 +10,12 @@ class LoginApi {
       axios.post('http://127.0.0.1:5000/auth/login', user)
         .then((response) => {
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('username', response.data.user.username);
           login.push(response.data);
           resolve(login);
         })
         .catch((error) => {
           reject(error.response.data.Error);
-          console.log(error.response.data.Error, '_+_+_++_++_+_+_');
         });
     });
   }
@@ -29,6 +27,7 @@ class LoginApi {
       })
         .then((response) => {
           localStorage.removeItem('token');
+          localStorage.removeItem('username');
           login.push(response.data);
         // resolve(login);
         })

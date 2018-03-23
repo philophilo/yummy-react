@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as categoryActions from '../actions/categoryActions';
+import * as categoryActions from '../../actions/categoryActions';
 import CategoryForm from './CategoryForm';
 
 
@@ -34,11 +34,8 @@ export class ManageCategoryPage extends React.Component {
 
     saveCategory(event){
         event.preventDefault();
-        console.log(this.state.category, "...................<<<<:")
         // in actions, save course
         this.props.actions.saveCategory(this.state. category)
-         .then(() => this.context.router.history.push('/categories'))
-        // this.context.router.history.push('/CategoriesPage');
     }
 
     render(){
@@ -80,7 +77,6 @@ function mapStateToProps(state, ownProps){
             category = getCategoryById(state.categories, categoryId);
         }
     }
-    console.log(category, '<<<<<<')
     return {
         category: category
     };

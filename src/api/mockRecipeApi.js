@@ -29,7 +29,6 @@ class RecipeApi {
         reject(error.response.data.Error);
       })
     });
-      
   }
 
   static saveRecipe(recipe, categoryId = null) {
@@ -46,9 +45,9 @@ class RecipeApi {
         })
         .catch((error)=> {
           if(error.response && error.response.data){
-            console.log(error.response.data, '_+_+_++_++_+_+_')
+            reject(error.response.data.Error)
           }
-          console.log(error, '_+_+_++_++_+_+_')
+          
         })
 
       }else{
@@ -60,7 +59,7 @@ class RecipeApi {
           resolve(data)
         })
         .catch((error)=> {
-          console.log(error, '_+_+_++_++_+_+_')
+          reject(error.response.data.Error)
         })
       }
     });
@@ -76,8 +75,7 @@ class RecipeApi {
       })
       .catch((error)=> {
         if(error.response && error.response.data){
-          console.log(error.response.data.Error, '_+_+_++_++_+_+_')
-          // reject(error.response.data.Error)
+          reject(error.response.data.Error)
         }
       })
     });
@@ -95,11 +93,9 @@ class RecipeApi {
           number_of_pages: response.data.number_of_pages,
           previous_page: response.data.previous_page}
         resolve([response.data.recipes, pagination]);
-        
       })
       .catch((error)=> {
-        // reject([]);
-        console.log(error, '_+_+_++_++_+_+_')
+        reject(error.response.data.Error)
       })
     });
       

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import * as categoryActions from '../actions/categoryActions';
+import * as categoryActions from '../../actions/categoryActions';
 import CategoryList from './CategoryList';
 import { push } from 'react-router-redux';
 import { Pagination } from 'react-bootstrap'
@@ -174,32 +175,55 @@ class CategoriesPage extends React.Component{
         }
 
         return (
-            <div  className='container-fluid body-bg'>
-                <h1>Categories</h1>
-                <a className="btn btn-primary" 
-                href='/add/category' >Add category</a>
+            <div  className='container body-bg'>
+                
+                    <div className="row">
+                        <div className="page-header">
+                            <div className="left">
+                                <div className="intro">
+                                <div className="heading">
+                                    <h1>Categories</h1>
+                                </div>
+                                <div className="add-button">
+                                    <Link className="btn btn-primary" 
+                                    to='/add/category' >Add category</Link>
+                                </div>
+                                
+                                </div>
+                            </div>
 
-                <form onSubmit={this.handleSearchQuery}>
+                            <div className="right">
+                                <form onSubmit={this.handleSearchQuery}>
+                                        <div className='form-group'>
+                                            <div className="field">
+                                            <Autosuggest 
+                                                suggestions = {suggestions}
+                                                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                                getSuggestionValue={this.getSuggestionValue}
+                                                onSuggestionSelected={this.onSuggestionSelected}
+                                                renderSuggestion={this.renderSuggestion}
+                                                inputProps={inputProps}
+                                            />
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
 
-                    <Autosuggest 
-                        suggestions = {suggestions}
-                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                        getSuggestionValue={this.getSuggestionValue}
-                        onSuggestionSelected={this.onSuggestionSelected}
-                        renderSuggestion={this.renderSuggestion}
-                        inputProps={inputProps}
-                    />
-
-                </form>
-
-                <CategoryList 
-                    categories={categories} 
-                    onDelete={this.deleteCategory}
-                />
-                <Pagination>
-                    <Pagination bsSize="medium">{ items }</Pagination>
-                </Pagination>
+                        <CategoryList 
+                            categories={categories} 
+                            onDelete={this.deleteCategory}
+                        />
+                
+                <section>
+                <div className="row paging">
+                    <Pagination>
+                        <Pagination bsSize="medium">{ items }</Pagination>
+                    </Pagination>
+                </div>
+                </section>
             </div>
         );
     }

@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as RecipeActions from '../actions/recipeActions';
+import * as RecipeActions from '../../actions/recipeActions';
 import RecipeForm from './RecipeForm';
 
 
 class ManageRecipePage extends React.Component {
     constructor(props, context) {
         super(props, context);
-        console.log(this.props.actions, "<<<<<<<<Manage recipe constructor props.actions")
         this.state = {
             recipe: Object.assign({}, props.recipe),
             errors: {}
@@ -45,6 +44,7 @@ class ManageRecipePage extends React.Component {
 
     render() {
         // setting props for courseForm
+        console.log(this.props, "<<<<<<<<Manage recipe constructor props.actions")
         return (
             <RecipeForm 
                 onChange={this.updateRecipeState}
@@ -79,9 +79,7 @@ function getRecipeById(recipes, id){
 // parsing the state to the class
 function mapStateToProps(state, ownProps){
     let recipe = {id: '', recipe_name: '', ingredients:'', description: '', recipe_date: '', categoryId: ''};
-    console.log("--------------------------------------------------------++++++++++++++++++++++++++++category id", ownProps.match.params)
     let categoryForRecipe = ownProps.match.params.categoryId
-    console.log("--------------------------------------------------------++++++++++++++++++++++++++++category id", ownProps.match.params)
     if (ownProps.match.params){
         const recipeId = ownProps.match.params.id // from the path /recipe/:id
         if (recipeId && state.recipes.length > 0){

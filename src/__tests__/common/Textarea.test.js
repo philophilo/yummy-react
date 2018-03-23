@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import Textarea from '../../common/Textarea';
+import Textarea from '../../components/common/Textarea';
 
 Enzyme.configure({ adapter: new Adapter() });
 

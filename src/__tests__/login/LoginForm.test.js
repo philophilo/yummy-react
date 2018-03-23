@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import React from 'react';
-import LoginForm from '../../login/LoginForm';
+import LoginForm from '../../components/login/LoginForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 

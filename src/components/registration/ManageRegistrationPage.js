@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
-import * as registrationActions from '../actions/registrationActions';
+import * as registrationActions from '../../actions/registrationActions';
 import RegistrationForm from './RegistrationForm';
 
 
@@ -36,22 +36,20 @@ class ManageRegistrationPage extends React.Component {
   saveRegistration(event) {
     event.preventDefault();
     // in actions, save registration
-    this.props.actions.saveRegistration(this.state.register).then(() => {
-      this.redirect();
-    }).catch(error => {
-      toastr.error(error);
-      // this.registrationError(error)
-    });
+    if (this.props.editUser) {
+      this.props.actions.changePassword(this.state.register);
+    } else {
+      this.props.actions.saveRegistration(this.state.register).then(() => {
+        this.redirect();
+      }).catch(error => {
+        toastr.error(error);
+      });
+    }
   }
 
   redirect() {
     toastr.success(this.state.register.username, 'registered successfully');
     this.context.router.history.push('/login');
-  }
-
-  registrationError(error) {
-
-
   }
 
   render() {
@@ -62,6 +60,7 @@ class ManageRegistrationPage extends React.Component {
         onSave={this.saveRegistration}
         register={this.state.register}
         errors={this.state.errors}
+        editUser={this.props.editUser}
       />
     );
   }
@@ -71,6 +70,7 @@ class ManageRegistrationPage extends React.Component {
 ManageRegistrationPage.propTypes = {
   register: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  editUser: PropTypes.bool.isRequired,
 };
 
 // pull in the react router context so router is vailbel in this.context.router
@@ -87,15 +87,18 @@ function getUserById(registration, id) {
 // parsing the state to the class
 function mapStateToProps(state, ownProps) {
   let user = { id: '', name: '', email: '', username: '', password: '', confirmPassword: '' };
+  let editUser = false;
   if (ownProps.match.params) {
     const userId = ownProps.match.params.id; // from the path /course/:id
     if (userId && state.register.length > 0) {
-      user = getUserById(state.register, userId);
+      user = getUserById(state.register, Number(userId));
+      editUser = true;
     }
   }
-
+  console.log('user>>>>>>>', editUser);
   return {
     register: user,
+    editUser: editUser,
   };
 }
 

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
-import * as loginActions from '../actions/loginActions';
+import * as loginActions from '../../actions/loginActions';
 import LoginForm from './LoginForm';
-import { loadCategories } from '../actions/categoryActions';
-import configureStore from '../store/configureStore';
+import { loadCategories } from '../../actions/categoryActions';
+import configureStore from '../../store/configureStore';
 
 
 class ManageLoginPage extends React.Component {

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import React from 'react';
 
 // import Testutils from 'react-addons-test-utils';
-import TextInput from '../../common/TextInput';
+import TextInput from '../../components/common/TextInput';
 
 Enzyme.configure({ adapter: new Adapter() });
 

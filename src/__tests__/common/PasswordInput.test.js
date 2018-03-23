@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import React from 'react';
-import PasswordInput from '../../common/PasswordInput';
+import PasswordInput from '../../components/common/PasswordInput';
 
 
 Enzyme.configure({ adapter: new Adapter() });

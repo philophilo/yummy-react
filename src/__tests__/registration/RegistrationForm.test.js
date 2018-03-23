@@ -6,12 +6,12 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import React from 'react';
  
 // import Testutils from 'react-addons-test-utils';
-import RegistrationForm from '../../registration/RegistrationForm';
+import RegistrationForm from '../../components/registration/RegistrationForm';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('<CategoryForm />', () => {
     const store = configureMockStore([thunk])({

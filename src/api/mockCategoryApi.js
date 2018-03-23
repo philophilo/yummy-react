@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-const categories = [
-  
-];
+const categories = [];
 
 class CategoryApi {
   static getAllCategories(page) {
@@ -10,24 +8,25 @@ class CategoryApi {
       axios.get('http://127.0.0.1:5000/category/?page='+ page, {
         headers: {Authorization:  "Bearer " + localStorage.getItem('token')}
       }).then((response) => {
+        // pagination
         var pagination = {current_page: response.data.current_page,
           message: response.data.message,
           next_page: response.data.next_page,
           number_of_pages: response.data.number_of_pages,
           previous_page: response.data.previous_page}
         var new_categories = []
+        // attach to existing categories
         for (var i = 0; i < response.data.categories.length; ++i)
           new_categories.push(response.data.categories[i])
         resolve([new_categories, pagination]);
       })
       .catch((error)=> {
-        console.log(error, '_+_+_++_++_+_+_')
+        reject("You have " + error.response.data.message)
       })
     });
   }
 
   static saveCategory(category) {
-    // const{category_name, category_description} = category;
     category = Object.assign({}, category); // to avoid manipulating object passed in.
     
     return new Promise((resolve, reject) => {
@@ -39,23 +38,15 @@ class CategoryApi {
             resolve(response.data)
         })
         .catch((error)=> {
-          if(error.response && error.response.data){
-            console.log(error.response.data, '_+_+_++_++_+_+_')
-          }
-          console.log(error, '_+_+_++_++_+_+_')
+          reject(error.response.data.Error)
         })
       }else{
         axios.post('http://127.0.0.1:5000/category', category, 
         {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
-          console.log('-------------------OLD categories', categories)
-          // categories.push(response.data)
           resolve(response.data)
         })
         .catch((error)=> {
-          if(error.response && error.response.data){
-            console.log(error.response.data, '_+_+_++_++_+_+_')
-          }
-          console.log(error, '_+_+_++_++_+_+_')
+          reject(error.response.data.Error)
         })
       }
       
@@ -64,27 +55,16 @@ class CategoryApi {
 
   static deleteCategory(categoryId) {
     return new Promise((resolve, reject) => {
-      // axios.delete('http://127.0.0.1:5000/category/'+categoryId, 
-      //   {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
-      //     const indexOfCategoryToDelete = categories.findIndex(category => 
-      //       category.id == categoryId);
-      //     categories.splice(indexOfCategoryToDelete, 1);
-      //     // console.log("=================================After delete", indexOfCategoryToDelete, categories)
-      //     resolve(categories);
-      // })
-      // .catch((error)=> {
-      //   if(error.response && error.response.data){
-      //     console.log(error.response.data, '_+_+_++_++_+_+_')
-      //   }
-      //   console.log(error, '_+_+_++_++_+_+_')
-      // })
-      // setTimeout(() => {
-      //   const indexOfCategoryToDelete = categories.findIndex(category => 
-      //     category.id == categoryId);
-      //   categories.splice(indexOfCategoryToDelete, 1);
-      //   console.log("=================================After delete", indexOfCategoryToDelete, categories)
-      //   resolve(categories);
-      // }, delay);
+      axios.delete('http://127.0.0.1:5000/category/'+categoryId, 
+        {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
+          const indexOfCategoryToDelete = categories.findIndex(category => 
+            category.id == categoryId);
+          categories.splice(indexOfCategoryToDelete, 1);
+          resolve([categories, response.data.message]);
+      })
+      .catch((error)=> {
+        reject(error.response.data.Error)
+      })
     });
   }
 
@@ -93,7 +73,7 @@ class CategoryApi {
       axios.get('http://127.0.0.1:5000/category/search/?q=' + q +'&page='+page, {
         headers: {Authorization:  "Bearer " + localStorage.getItem('token')}
       }).then((response) => {
-        // for category in response.data.categories
+        // organise pagination
         var pagination = {current_page: response.data.current_page,
         message: response.data.message,
         next_page: response.data.next_page,
@@ -106,7 +86,7 @@ class CategoryApi {
         resolve([newCategories, pagination]);
       })
       .catch((error)=> {
-        console.log(error, '_+_+_++_++_+_+_')
+        reject(error.response.data.Error)
       })
       
     });
