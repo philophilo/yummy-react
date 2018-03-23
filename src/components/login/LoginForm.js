@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 import TextInput from '../common/TextInput';
-import EmailInput from '../common/EmailInput';
 import PasswordInput from '../common/PasswordInput';
 
 

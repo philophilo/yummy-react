@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
 import Textarea from '../common/Textarea';
 
-const RecipeForm = ({ recipe, onSave, onChange, loading, errors }) => {
+const RecipeForm = ({ recipe, onSave, onChange }) => {
   return (
     <div className="container body-bg">
       <div className="row">
@@ -29,7 +28,6 @@ const RecipeForm = ({ recipe, onSave, onChange, loading, errors }) => {
             label="RecipeName"
             value={recipe.recipe_name}
             onChange={onChange}
-            error={errors.title}
           />
 
           <Textarea
@@ -37,7 +35,6 @@ const RecipeForm = ({ recipe, onSave, onChange, loading, errors }) => {
             label="RecipeDescription"
             value={recipe.description}
             onChange={onChange}
-            error={errors.title}
           />
 
           <Textarea
@@ -45,13 +42,11 @@ const RecipeForm = ({ recipe, onSave, onChange, loading, errors }) => {
             label="Ingredients"
             value={recipe.ingredients}
             onChange={onChange}
-            error={errors.title}
           />
 
           <input
             type="submit"
-            disabled={loading}
-            value={loading ? 'Saving...' : 'Save'}
+            value="Save"
             className="btn btn-primary"
             onClick={onSave}
           />
@@ -65,8 +60,6 @@ RecipeForm.propTypes = {
   recipe: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-  errors: PropTypes.object,
 };
 
 export default RecipeForm;

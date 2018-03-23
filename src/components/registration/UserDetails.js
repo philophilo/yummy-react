@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import UserListRow from './UserListRow';
-import register from '../../registerServiceWorker';
 
 const UserDetails = ({ register }) => {
   return (

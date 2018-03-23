@@ -79,7 +79,7 @@ ManageRegistrationPage.contextTypes = {
 };
 
 function getUserById(registration, id) {
-  const user = registration.filter(user => user.id === id);
+  const user = registration.filter(u => u.id === id);
   if (user) return user[0]; // since filter returns an array, grab the first
   return null;
 }

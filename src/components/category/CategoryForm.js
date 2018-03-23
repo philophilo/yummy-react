@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
 import Textarea from '../common/Textarea';
 
 const CategoryForm = ({ category, onSave, onChange, loading, errors }) => {
@@ -44,6 +44,15 @@ const CategoryForm = ({ category, onSave, onChange, loading, errors }) => {
               className="btn btn-primary"
               onClick={onSave}
             />
+            <span> </span>
+            <Link to="/categories">
+              <input
+                type="button"
+                disabled={loading}
+                value="Cancel"
+                className="btn btn-warning"
+              />
+            </Link>
           </form>
         </div>
       </div>
@@ -55,8 +64,6 @@ CategoryForm.propTypes = {
   category: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-  errors: PropTypes.object,
 };
 
 export default CategoryForm;

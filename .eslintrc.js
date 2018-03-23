@@ -1,5 +1,6 @@
 module.exports = {
     "extends": "airbnb",
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "node": true,
@@ -39,5 +40,11 @@ module.exports = {
         "react/no-string-refs":0,
         "arrow-parens":0,
         "no-unused-vars":0,
+        "react/forbid-prop-types":0,
+        "jsx-a11y/anchor-is-valid":0,
+        "jsx-a11y/interactive-supports-focus":0,
+        "react/require-default-props":0,
+        "jsx-a11y/no-static-element-interactions":0,
     }
 };
+

@@ -1,15 +1,13 @@
 import axios from 'axios';
-import { push } from 'react-router-redux';
 
-const register = [
-];
+const register = [];
 
 class RegistrationApi {
   // TODO track the name of the state -- when is it registration and register
   static saveUser(user) {
     user = Object.assign({}, user);
     return new Promise((resolve, reject) => {
-      axios.post('http://127.0.0.1:5000/auth/register', user)
+      axios.post('https://yummy-foods.herokuapp.com/auth/register', user)
         .then((response) => {
           register.push(response.data);
           resolve(register);
@@ -23,8 +21,8 @@ class RegistrationApi {
   // TODO track the name of the state -- when is it registration and register
   static getUser() {
     return new Promise((resolve, reject) => {
-      axios.get('http://127.0.0.1:5000/auth/get_user', {
-        headers: { Authorization: `Bearer ${  localStorage.getItem('token')}` },
+      axios.get('https://yummy-foods.herokuapp.com/auth/get_user', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => {
           resolve([response.data.user]);
@@ -39,8 +37,8 @@ class RegistrationApi {
   static changePassword(user) {
     user.password = user.current_password;
     return new Promise((resolve, reject) => {
-      axios.put('http://127.0.0.1:5000/auth/reset-password', user, {
-        headers: { Authorization: `Bearer ${  localStorage.getItem('token')}` },
+      axios.put('https://yummy-foods.herokuapp.com/auth/reset-password', user, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => {
           resolve(response.data.message);

@@ -42,7 +42,8 @@ describe('<CategoriesPage />', () => {
       </MemoryRouter>
     </Provider>);
   it('should render itself without crashing', () => {
-    mount(<Provider store={store}>
+    mount(
+      <Provider store={store}>
         <MemoryRouter>
           <CategoriesPage {...props} />
         </MemoryRouter>
