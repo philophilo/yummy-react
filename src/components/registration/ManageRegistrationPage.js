@@ -95,7 +95,6 @@ function mapStateToProps(state, ownProps) {
       editUser = true;
     }
   }
-  console.log('user>>>>>>>', editUser);
   return {
     register: user,
     editUser: editUser,
