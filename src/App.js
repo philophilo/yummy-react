@@ -1,9 +1,6 @@
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import PropTypes from 'prop-types'
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import { Route, Link, Redirect } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { Menu, Icon } from 'antd';
+import React from 'react';
+import { Route, Link } from 'react-router-dom'
 import HomePage from './components/home/HomePage';
 import ManageRegistrationPage from './components/registration/ManageRegistrationPage'
 import ManageLoginPage from './components/login/ManageLoginPage'
@@ -22,7 +19,6 @@ import 'antd/dist/antd.css';
 import './home.css'
 
 
-const { Header, Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -43,9 +39,7 @@ class App extends React.Component {
   }
 
   handleLogout(){
-    // window.localStorage.removeItem('token')
     configureStore.dispatch(doLogout())
-    // console.log(window.localStorage.getItem('token'), "======================<<<<")
   }
 
   handleLoadRegister(){
@@ -68,7 +62,6 @@ class App extends React.Component {
           { token ?
             <Menu
               onClick={this.handleClick}
-              // selectedKeys={[this.state.current]}
               mode="horizontal"
             >
 

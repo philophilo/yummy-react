@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import * as categoryActions from '../../actions/categoryActions';
 import CategoryList from './CategoryList';
-import { push } from 'react-router-redux';
 import { Pagination } from 'react-bootstrap'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -21,7 +20,6 @@ class CategoriesPage extends React.Component{
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
         this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
-        // this.handleSearchQuery = this.handleSearchQuery.bind(this)
         this.cats = [...this.props.categories]
         
         this.state = {
@@ -80,8 +78,7 @@ class CategoriesPage extends React.Component{
     handleSearchQuery = (event) => {
         event.preventDefault()
         const search = event.target.elements[0].value
-        // alert(React.findDOMNode(this.refs.theInput).value)
-        this.state.searchCalled = true
+        this.setState(this.searchCalled = true)
         this.props.actions.searchCategories(search)
     }
 

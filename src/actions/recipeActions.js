@@ -30,8 +30,8 @@ export function loadCategoryRecipes(category_id, page=1){
     return function(dispatch){
         return RecipeApi.getCategoryRecipes(category_id, page).then(data => {
             // arrow (anonymous) function with parameter recipes
-            var [recipes, pagination] = [[], []]
-            [recipes, pagination] = data
+            var [recipes, pagination] = [[], []];
+            [recipes, pagination] = data;
             dispatch(loadRecipesSuccess(recipes));
             dispatch(recipePaginationSuccess(pagination))
             // window.location = "/CategoriesPage"
@@ -72,8 +72,8 @@ export function searchCategoryRecipes(q, page=1){
     // >>> thunk <<<
     return function(dispatch){
         return RecipeApi.searchCategoryRecipes(q, page).then(data => {
-            var [recipes, pagination] = [[], []]
-            [recipes, pagination] = data
+            var [recipes, pagination] = [[], []];
+            [recipes, pagination] = data;
             dispatch(loadRecipesSuccess(recipes));
             dispatch(recipePaginationSuccess(pagination))
             // dispatch actions creator

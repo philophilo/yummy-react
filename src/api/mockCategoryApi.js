@@ -33,7 +33,7 @@ class CategoryApi {
       if (category.id) {
         axios.put('http://127.0.0.1:5000/category/'+category.id, category, 
           {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
-            const existingCategoryIndex = categories.findIndex(a => a.id == category.id);
+            const existingCategoryIndex = categories.findIndex(a => a.id === category.id);
             categories.splice(existingCategoryIndex, 1, category);
             resolve(response.data)
         })
@@ -58,7 +58,7 @@ class CategoryApi {
       axios.delete('http://127.0.0.1:5000/category/'+categoryId, 
         {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
           const indexOfCategoryToDelete = categories.findIndex(category => 
-            category.id == categoryId);
+            category.id === categoryId);
           categories.splice(indexOfCategoryToDelete, 1);
           resolve([categories, response.data.message]);
       })

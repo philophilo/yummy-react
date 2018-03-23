@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { push } from 'react-router-redux';
 
-const register = [
-];
+const register = [];
 
 class RegistrationApi {
   // TODO track the name of the state -- when is it registration and register

@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import * as recipeActions from '../../actions/recipeActions';
 import RecipeList from './RecipeList';
-import { push } from 'react-router-redux';
 import { Pagination } from 'react-bootstrap'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css';

@@ -33,8 +33,8 @@ export function loadCategories(page = 1){
         // getAllCourses returns a promise containing an object
         return CategoryApi.getAllCategories(page).then(data => {
             // arrow (anonymous) function with parameter courses
-            var [categories, pagination] = [[], {}]
-            [categories, pagination] = data
+            var [categories, pagination] = [[], {}];
+            [categories, pagination] = data;
             dispatch(loadCategoriesSuccess(categories));
             dispatch(categoryPaginationSuccess(pagination))
             // dispatch actions creator
@@ -49,7 +49,6 @@ export function saveCategory(category) {
         return CategoryApi.saveCategory(category).then(savedCategory => {
             category.id ? dispatch(updateCategorySuccess(savedCategory)): 
                 dispatch(createCategorySuccess(savedCategory))
-            // window.history.back()
             dispatch(push('/categories'))
             
         }).catch(error => {
@@ -79,8 +78,8 @@ export function searchCategories(q, page=1){
         // getAllCourses returns a promise containing an object
         return CategoryApi.searchCategories(q, page).then(data => {
             // arrow (anonymous) function with parameter courses
-            var [categories, pagination] = [[], {}]
-            [categories, pagination] = data
+            var [categories, pagination] = [[], {}];
+            [categories, pagination] = data;
             dispatch(loadCategoriesSuccess(categories));
             dispatch(categoryPaginationSuccess(pagination))
             dispatch(push('/search/categories/'+q+'/'+page))

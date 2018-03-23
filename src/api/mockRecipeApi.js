@@ -40,7 +40,6 @@ class RecipeApi {
         recipe.recipe_category_id = recipe.category_id
         axios.put('http://127.0.0.1:5000/category/'+recipe.category_id+'/recipes/'+recipe.id, recipe, 
         {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
-          const existingRecipeIndex = recipes.findIndex(a => a.id == recipe.id);
           resolve(response.data)
         })
         .catch((error)=> {
@@ -69,7 +68,7 @@ class RecipeApi {
     return new Promise((resolve, reject) => {
       axios.delete('http://127.0.0.1:5000/category/'+ category_id+'/recipes/'+recipeId, 
         {headers: {Authorization: "Bearer " + localStorage.getItem('token')}}).then((response) => {
-        const indexOfRecipeToDelete = recipes.findIndex(recipe => recipe.id == recipeId);
+        const indexOfRecipeToDelete = recipes.findIndex(recipe => recipe.id === recipeId);
         recipes.splice(indexOfRecipeToDelete, 1);
         resolve(response.data.message);
       })

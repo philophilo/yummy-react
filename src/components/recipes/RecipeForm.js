@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
 import Textarea from '../common/Textarea';
 
 const RecipeForm = ({ recipe, onSave, onChange, loading, errors }) => {
