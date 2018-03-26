@@ -75,11 +75,11 @@ const RegistrationForm = ({ register, onSave, onChange, loading, errors, editUse
 
             <Link to="/login">
               <input
-              type="button"
-              disabled={loading}
-              value="Login"
-              className="btn btn-success"
-            />
+                type="button"
+                disabled={loading}
+                value="Login"
+                className="btn btn-success"
+              />
             </Link>
           </form>
         </div>
