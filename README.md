@@ -2,7 +2,10 @@
 
 The project is build with React and Redux framework.
 
-The project is a front-end for a [recipes Api](https://github.com/philophilo/yummy_api/tree/develop)
+# API on Heroku
+This [front-end](https://yummy-reactjs.herokuapp.com/) application
+The backend [recipes Api](https://github.com/philophilo/yummy_api/tree/develop)
+
 # Iris React Frontend
 # Requirements
 
