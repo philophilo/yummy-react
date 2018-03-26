@@ -54,8 +54,6 @@ CategoryForm.propTypes = {
   category: PropTypes.object.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-  errors: PropTypes.object,
 };
 
 export default CategoryForm;

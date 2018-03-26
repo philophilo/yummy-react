@@ -63,7 +63,7 @@ ManageCategoryPage.contextTypes = {
 };
 
 function getCategoryById(categories, id) {
-  const category = categories.filter(category => category.id === id);
+  const category = categories.filter(categoryItem => Number(categoryItem.id) === Number(id));
   if (category) return category[0]; // since filter returns an array, grab the first
   return null;
 }

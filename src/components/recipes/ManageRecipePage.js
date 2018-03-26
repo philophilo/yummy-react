@@ -69,9 +69,7 @@ ManageRecipePage.contextTypes = {
 };
 
 function getRecipeById(recipes, id) {
-  console.log(recipes, id, '()()()()');
-  const recipe = recipes.filter(recipe => recipe.id === id);
-  console.log('recipe>>>>', recipe);
+  const recipe = recipes.filter(recipeItem => Number(recipeItem.id) === Number(id));
   if (recipe) return recipe[0]; // since filter returns an array, grab the first
   return null;
 }
