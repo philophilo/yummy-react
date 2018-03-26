@@ -2,12 +2,6 @@
 
 The project is build with React and Redux framework.
 
-# On Heroku
-This [front-end](https://yummy-reactjs.herokuapp.com/) application
-
-The backend [recipes Api](https://github.com/philophilo/yummy_api/tree/develop)
-
-# Iris React Frontend
 # Requirements
 
 * ReactJS
@@ -16,6 +10,11 @@ The backend [recipes Api](https://github.com/philophilo/yummy_api/tree/develop)
 * Axios
 * All other dependencies are included in the  `package-lock.json`
 
+
+# On Heroku
+This [front-end](https://yummy-reactjs.herokuapp.com/) application
+
+The backend [recipes Api](https://github.com/philophilo/yummy_api/tree/develop)
 
 # Getting up and running.
 
