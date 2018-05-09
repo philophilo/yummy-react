@@ -21,22 +21,6 @@ describe('Reducers changes state on', () => {
   }),
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   it('changes state on user register', () => {
     const results =
         {
@@ -81,43 +65,27 @@ describe('Reducers changes state on', () => {
   }),
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   it('loads all categories', () => {
     const results =
         {
           type: 'LOAD_CATEGORIES_SUCCESS',
           categories: [
-            {"category_description": "this is chicken",
-            "category_name": "My chicken",
-            "id": 24}
+            { category_description: 'this is chicken',
+              category_name: 'My chicken',
+              id: 24 },
           ],
         };
     expect(categoryReducer([
       {
-        "category_description": "this is chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'this is chicken',
+        category_name: 'My chicken',
+        id: 24,
       },
     ], results))
       .toEqual([{
-        "category_description": "this is chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'this is chicken',
+        category_name: 'My chicken',
+        id: 24,
       }]);
   }),
   it('creates categories', () => {
@@ -128,15 +96,15 @@ describe('Reducers changes state on', () => {
         };
     expect(categoryReducer([
       {
-        "category_description": "this is chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'this is chicken',
+        category_name: 'My chicken',
+        id: 24,
       },
     ], {}, results))
       .toEqual([{
-        "category_description": "this is chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'this is chicken',
+        category_name: 'My chicken',
+        id: 24,
       }]);
   }),
   it('updates category', () => {
@@ -144,60 +112,24 @@ describe('Reducers changes state on', () => {
         {
           type: 'UPDATE_CATEGORY_SUCCESS',
           register: [
-            "category_description": "this is chicken",
-            "category_name": "My chicken",
-            "id": 24
+            'category_description': "this is chicken",
+            'category_name': "My chicken",
+            'id': 24,
           ],
         };
     expect(categoryReducer([
       {
-        "category_description": "new chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'new chicken',
+        category_name: 'My chicken',
+        id: 24,
       },
     ], {}, results))
       .toEqual([{
-        "category_description": "new chicken",
-        "category_name": "My chicken",
-        "id": 24
+        category_description: 'new chicken',
+        category_name: 'My chicken',
+        id: 24,
       }]);
   }),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   it('loads all recipes', () => {
@@ -205,46 +137,46 @@ describe('Reducers changes state on', () => {
         {
           type: 'LOAD_RECIPES_SUCCESS',
           recipes: [
-            {"category_id": 24,
-            "category_name": "My chicken",
-            "description": "sdfdfsdffsd",
-            "id": 45,
-            "ingredients": [
-                "sdfsdf ",
-                "  sdfsd",
-                " sddfd"
-            ],
-            "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-            "recipe_name": "ajhbdsvkjnds"}
+            { category_id: 24,
+              category_name: 'My chicken',
+              description: 'sdfdfsdffsd',
+              id: 45,
+              ingredients: [
+                'sdfsdf ',
+                '  sdfsd',
+                ' sddfd',
+              ],
+              recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+              recipe_name: 'ajhbdsvkjnds' },
           ],
         };
     expect(recipeReducer([
       {
-        "category_id": 24,
-        "category_name": "My chicken",
-        "description": "sdfdfsdffsd",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        category_id: 24,
+        category_name: 'My chicken',
+        description: 'sdfdfsdffsd',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+        recipe_name: 'ajhbdsvkjnds',
       },
     ], results))
       .toEqual([{
-        "category_id": 24,
-        "category_name": "My chicken",
-        "description": "sdfdfsdffsd",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        category_id: 24,
+        category_name: 'My chicken',
+        description: 'sdfdfsdffsd',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+        recipe_name: 'ajhbdsvkjnds',
       }]);
   }),
   it('creates recipes', () => {
@@ -255,25 +187,25 @@ describe('Reducers changes state on', () => {
         };
     expect(recipeReducer([
       {
-        "description": "sdfdfsdffsd",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        description: 'sdfdfsdffsd',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_name: 'ajhbdsvkjnds',
       },
     ], {}, results))
       .toEqual([{
-        "description": "sdfdfsdffsd",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        description: 'sdfdfsdffsd',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_name: 'ajhbdsvkjnds',
       }]);
   }),
   it('updates recipes', () => {
@@ -281,62 +213,46 @@ describe('Reducers changes state on', () => {
         {
           type: 'UPDATE_CATEGORY_SUCCESS',
           recipes: [
-            {"category_id": 24,
-            "category_name": "My chicken",
-            "description": "sdfdfsdffsd",
-            "id": 45,
-            "ingredients": [
-                "sdfsdf ",
-                "  sdfsd",
-                " sddfd"
-            ],
-            "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-            "recipe_name": "ajhbdsvkjnds"}
+            { category_id: 24,
+              category_name: 'My chicken',
+              description: 'sdfdfsdffsd',
+              id: 45,
+              ingredients: [
+                'sdfsdf ',
+                '  sdfsd',
+                ' sddfd',
+              ],
+              recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+              recipe_name: 'ajhbdsvkjnds' },
           ],
         };
     expect(categoryReducer([
       {
-        "category_id": 24,
-        "category_name": "My chicken",
-        "description": "new redeable description",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        category_id: 24,
+        category_name: 'My chicken',
+        description: 'new redeable description',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+        recipe_name: 'ajhbdsvkjnds',
       },
     ], {}, results))
       .toEqual([{
-        "category_id": 24,
-        "category_name": "My chicken",
-        "description": "new redeable description",
-        "id": 45,
-        "ingredients": [
-            "sdfsdf ",
-            "  sdfsd",
-            " sddfd"
+        category_id: 24,
+        category_name: 'My chicken',
+        description: 'new redeable description',
+        id: 45,
+        ingredients: [
+          'sdfsdf ',
+          '  sdfsd',
+          ' sddfd',
         ],
-        "recipe_date": "Mon, 19 Mar 2018 09:39:44 GMT",
-        "recipe_name": "ajhbdsvkjnds"
+        recipe_date: 'Mon, 19 Mar 2018 09:39:44 GMT',
+        recipe_name: 'ajhbdsvkjnds',
       }]);
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
+  });
 });

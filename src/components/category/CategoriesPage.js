@@ -32,6 +32,10 @@ class CategoriesPage extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps, '=====================');
+  }
+
     onChange = (event, { newValue }) => {
       this.setState({
         value: newValue,
