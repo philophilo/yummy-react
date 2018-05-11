@@ -5,7 +5,7 @@ const categories = [];
 class CategoryApi {
   static getAllCategories(page) {
     return new Promise((resolve, reject) => {
-      axios.get(`https://yummy-foods.herokuapp.com/category/?page=${page}`, {
+      axios.get(`https://api2.philophilo.xyz/category/?page=${page}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       }).then((response) => {
         // pagination
@@ -32,7 +32,7 @@ class CategoryApi {
 
     return new Promise((resolve, reject) => {
       if (category.id) {
-        axios.put(`https://yummy-foods.herokuapp.com/category/${category.id}`, category,
+        axios.put(`https://api2.philophilo.xyz/category/${category.id}`, category,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then((response) => {
           const existingCategoryIndex = categories.findIndex(a => a.id === category.id);
           categories.splice(existingCategoryIndex, 1, category);
@@ -42,7 +42,7 @@ class CategoryApi {
             reject(error.response.data.Error);
           });
       } else {
-        axios.post('https://yummy-foods.herokuapp.com/category', category,
+        axios.post('https://api2.philophilo.xyz/category', category,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then((response) => {
           resolve(response.data);
         })
@@ -55,7 +55,7 @@ class CategoryApi {
 
   static deleteCategory(categoryId) {
     return new Promise((resolve, reject) => {
-      axios.delete(`https://yummy-foods.herokuapp.com/category/${categoryId}`,
+      axios.delete(`https://api2.philophilo.xyz/category/${categoryId}`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }).then((response) => {
         const indexOfCategoryToDelete = categories.findIndex(category =>
           category.id === categoryId);
@@ -70,7 +70,7 @@ class CategoryApi {
 
   static searchCategories(q, page) {
     return new Promise((resolve, reject) => {
-      axios.get(`https://yummy-foods.herokuapp.com/category/search/?q=${q}&page=${page}`, {
+      axios.get(`https://api2.philophilo.xyz/category/search/?q=${q}&page=${page}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       }).then((response) => {
         // organise pagination

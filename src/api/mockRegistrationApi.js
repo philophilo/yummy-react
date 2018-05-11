@@ -7,7 +7,7 @@ class RegistrationApi {
   static saveUser(user) {
     user = Object.assign({}, user);
     return new Promise((resolve, reject) => {
-      axios.post('https://yummy-foods.herokuapp.com/auth/register', user)
+      axios.post('https://api2.philophilo.xyz/auth/register', user)
         .then((response) => {
           register.push(response.data);
           resolve(register);
@@ -21,7 +21,7 @@ class RegistrationApi {
   // TODO track the name of the state -- when is it registration and register
   static getUser() {
     return new Promise((resolve, reject) => {
-      axios.get('https://yummy-foods.herokuapp.com/auth/get_user', {
+      axios.get('https://api2.philophilo.xyz/auth/get_user', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => {
@@ -37,7 +37,7 @@ class RegistrationApi {
   static changePassword(user) {
     user.password = user.current_password;
     return new Promise((resolve, reject) => {
-      axios.put('https://yummy-foods.herokuapp.com/auth/reset-password', user, {
+      axios.put('https://api2.philophilo.xyz/auth/reset-password', user, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => {

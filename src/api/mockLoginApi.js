@@ -7,7 +7,7 @@ class LoginApi {
   static getUser(user) {
     user = Object.assign({}, user); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
-      axios.post('https://yummy-foods.herokuapp.com/auth/login', user)
+      axios.post('https://api2.philophilo.xyz/auth/login', user)
         .then((response) => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('username', response.data.user.username);
@@ -23,7 +23,7 @@ class LoginApi {
 
   static logoutUser() {
     return new Promise((resolve, reject) => {
-      axios.post('https://yummy-foods.herokuapp.com/auth/logout', {
+      axios.post('https://api2.philophilo.xyz/auth/logout', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => {
